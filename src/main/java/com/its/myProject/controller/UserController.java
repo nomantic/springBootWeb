@@ -1,13 +1,18 @@
 package com.its.myProject.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
     @GetMapping("/hello")
-    public String hello(@RequestParam (value = "world", defaultValue = "none") String name){
+    public String hello(@RequestParam (value="world", required = false) String name){
          return "Hello " + name;
+    }
+
+    @GetMapping("/bye/{placeholder}")
+    public String bye(@PathVariable("placeholder") String something){
+        return "Bye " + something;
     }
 }
